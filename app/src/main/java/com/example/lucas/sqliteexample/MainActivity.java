@@ -38,8 +38,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void salvarCliente(View view){
     Toast.makeText(MainActivity.this,"Cliente Salvo com sucesso", Toast.LENGTH_LONG).show();
-
-    }
+    Cliente cliente = new Cliente(
+            Integer.parseInt(editCodigo.getText().toString()),
+            editNome.getText().toString(),
+            editTelefone.getText().toString(),
+            editEmail.getText().toString());
+        db.addCliente(cliente);
+        }
 
 
 

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Lucas on 16-May-17.
@@ -42,12 +43,13 @@ public class Banco extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(CODIGO, cliente.getCodigo());
         values.put(NOME, cliente.getNome());
         values.put(TELEFONE, cliente.getTelefone());
         values.put(EMAIL,cliente.getEmail());
 
         db.insert(CLIENTES,null,values);
-
+        Log.d("DB","ADD CLIENTE ID " + cliente.getCodigo() + " NOME " + cliente.getNome() + " TELEFONE " + cliente.getTelefone() + " EMAIL " + cliente.getEmail());
         db.close();
 
 
@@ -74,7 +76,7 @@ public class Banco extends SQLiteOpenHelper {
         }
 
         Cliente cliente = new Cliente(Integer.parseInt(cursor.getString(0)),cursor.getString(1),cursor.getString(2),cursor.getString(3));
-
+        Log.d("DB","SELECT CLIENTE ID " + cliente.getCodigo() + " NOME " + cliente.getNome() + " TELEFONE " + cliente.getTelefone() + " EMAIL " + cliente.getEmail());
         return cliente;
     }
     void atualizarCliente(Cliente cliente){
